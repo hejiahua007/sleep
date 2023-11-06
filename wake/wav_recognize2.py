@@ -1,12 +1,13 @@
 # 腾讯云asr,输入base64编码的wav音频，输出text，此函数需异步调用，以节约请求事件
-from tencentcloud.common import credential
-from tencentcloud.common.profile.client_profile import ClientProfile
-from tencentcloud.common.profile.http_profile import HttpProfile
-from tencentcloud.asr.v20190614 import asr_client, models
+#from tencentcloud.common import credential
+#from tencentcloud.common.profile.client_profile import ClientProfile
+#from tencentcloud.common.profile.http_profile import HttpProfile
+#from tencentcloud.asr.v20190614 import asr_client, models
+from aip import AipSpeech
 import struct
 import pvporcupine
 import pyaudio
-import asyncio
+#import asyncio
 import json
 import base64
 import io
@@ -66,6 +67,31 @@ def sound_record():
     return wav_base64
 
 
+''' 你的APPID AK SK  参数在申请的百度云语音服务的控制台查看'''
+APP_ID = '41921615'
+API_KEY = '066z1Dktz7pNjWFWrZ3CSV6z'
+SECRET_KEY = 'YloZH3xxv08TCVXGs13BoLP1gfPK0IRM'
+
+# 新建一个AipSpeech
+client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
+
+
+
+def baidu_stt(wav_base64):
+    wav_bytes = base64.b64decode(wav_base64)  # 将base64字符串解码为字节序列
+    result = client.asr(wav_bytes, 'wav', 16000, {'dev_pid': 1536})  # 传递字节序列给client.asr
+
+    if result['err_msg'] == 'success.':
+        words = result['result'][0].encode('utf-8').decode('utf-8')  # 将结果从bytes转换为字符串
+        print(words)
+        with open('demo.txt', 'w', encoding='utf-8') as f:
+            f.write(words)
+        return words
+    else:
+        print("语音识别错误")
+        return ""
+
+'''
 # 腾讯云api的ID和key，用于语音识别
 tencent_Id = "AKIDkKsKZyBAvVr22qSpztY1FHCsNhs1zFKA"
 tencent_key = "iN1PZi1Qo6AC7nGWcbOB0jT4U6lTAoMj"
@@ -101,15 +127,25 @@ async def tencent_asr(wav_base64):
     else:
         print("你：" + response.Result)
     return response.Result
+'''
 
-
-def listen(model: str = "tencent"):
+def listen(model: str = "baidu"):
     audio_data = sound_record()
+
     if model == "tencent":
-        user_words = asyncio.run(tencent_asr(audio_data))
-        return user_words
-    #elif model == "whisper":
-        #user_words = whisper_asr(audio_data)
-        #return user_words
+        #user_words = asyncio.run(tencent_asr(audio_data))
+        print("1")
+    elif model == "baidu":
+        user_words = baidu_stt(audio_data)
+    else:
+        user_words = "Unsupported speech recognition model"
+
+    if user_words == "":
+        print("你什么都没说")
+    else:
+        print("你说了: ", user_words)
+
+    return user_words
+
 
 listen()
