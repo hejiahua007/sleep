@@ -12,8 +12,8 @@ import base64
 import io
 import wave
 import pvcobra
-porcupine_key = "cinmq/v7vHEzd3vrbTD9I24KiGgxbmUBXjxCcgG8kGnx8l48h57L6g=="
-porcupine_model = '../file/model/hello-chat_en_windows_v2_2_0.ppn'
+porcupine_key = 
+porcupine_model = 
 
 
 def sound_record():
@@ -67,8 +67,8 @@ def sound_record():
 
 
 # 腾讯云api的ID和key，用于语音识别
-tencent_Id = "AKIDkKsKZyBAvVr22qSpztY1FHCsNhs1zFKA"
-tencent_key = "iN1PZi1Qo6AC7nGWcbOB0jT4U6lTAoMj"
+tencent_Id = ""
+tencent_key = ""
 
 async def tencent_asr(wav_base64):
     cred = credential.Credential(tencent_Id, tencent_key)

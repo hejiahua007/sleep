@@ -13,8 +13,8 @@ import base64
 import io
 import wave
 import pvcobra
-porcupine_key = "cinmq/v7vHEzd3vrbTD9I24KiGgxbmUBXjxCcgG8kGnx8l48h57L6g=="
-porcupine_model = '../file/model/hello-chat_en_windows_v2_2_0.ppn'
+porcupine_key = 
+porcupine_model = 
 
 
 def sound_record():
@@ -68,9 +68,9 @@ def sound_record():
 
 
 ''' 你的APPID AK SK  参数在申请的百度云语音服务的控制台查看'''
-APP_ID = '41921615'
-API_KEY = '066z1Dktz7pNjWFWrZ3CSV6z'
-SECRET_KEY = 'YloZH3xxv08TCVXGs13BoLP1gfPK0IRM'
+APP_ID = 
+API_KEY =
+SECRET_KEY = 
 
 # 新建一个AipSpeech
 client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)

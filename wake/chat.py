@@ -29,7 +29,7 @@ prompt_ch = [
 ]
 tmp_prompt=[]
 
-zhipuai.api_key = "1f80f87197b083fe5ac67173e98156a7.S4ykoDw2xDFxOuhf"
+zhipuai.api_key = ""
 def pack_record(role: str, content: str):
     return {"role": role, "content": content}
 def structure_prompt(text: str, user_history: list,role:str):

@@ -4,8 +4,8 @@ import time
 import requests
 import json
 # 有道云api的key
-youdao_Id = "2689c45d66bda9ee"
-youdao_key = "BMd8hL0nKHirYgB9wC0Tx3nUw8falZs4"
+youdao_Id = ""
+youdao_key = ""
 
 # 文本翻译
 def text2text_translate(words, model="youdao",src_lang="ja",target_lang="zh-CHS"):

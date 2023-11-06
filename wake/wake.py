@@ -5,8 +5,8 @@ import pyttsx3
 import keyboard
 import speaking
 import time
-porcupine_key = "cinmq/v7vHEzd3vrbTD9I24KiGgxbmUBXjxCcgG8kGnx8l48h57L6g=="
-porcupine_model = '../file/model/hello-chat_en_windows_v2_2_0.ppn'
+porcupine_key = 
+porcupine_model = ''
 
 def keyword_wake_up():
     start_time = time.time()  # 记录程序启动时间
